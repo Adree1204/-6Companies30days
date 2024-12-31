@@ -1,0 +1,42 @@
+// We have used the fact that if there is overlap, either one is fully insied it or it has intersection point, 
+// Uisng geometry, we have calculated the results
+
+
+
+class Solution {
+public:
+    bool checkOverlap(int r, int xc, int yc, int x1, int y1, int x2, int y2) {
+
+        if((x1 <= xc && xc <= x2) && (y1 <= yc && yc <= y2)) return true;
+        if(((x1 - xc)*(x1 - xc) + (yc-y1)*(yc-y1)) <= r*r) return true;
+        vector<int> recx = {x1, x2};
+        vector<float> corres_y;
+        for(int x : recx){
+            if(r < x - xc) continue;
+            float sq = sqrt(r*r - (x - xc)*(x - xc));
+            corres_y.push_back(yc + sq);
+            corres_y.push_back(yc - sq);
+        }
+
+        vector<int> recy = {y1, y2};
+        vector<float> corres_x;
+        for(int y : recy){
+            if(r < y - yc) continue;
+            float sq = sqrt(r*r - (y - yc)*(y - yc));
+            corres_x.push_back(xc + sq);
+            corres_x.push_back(xc - sq);
+        }
+
+        for(float x : corres_x){
+            if(x1 <= x && x <= x2) return true;
+        }
+
+        for(float y : corres_y){
+            if(y1 <= y && y <= y2) return true;
+        }
+
+        
+        return false;
+
+    }
+};
