@@ -1,0 +1,17 @@
+// If we draw a bar graph, we will come to know, that median is that line from which sum os differences is minimum
+// If we adjust the line, then some new extra area will be included inside the sum
+// Moreover median is by definition is the centeral tendency from which sum of absolute differences of points is minimum 
+
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int sz = nums.size();
+        int mid = nums[sz/2];
+
+        int sum = 0;
+        for(int no : nums) sum += abs(no - mid);
+        return sum;
+
+    }
+};
