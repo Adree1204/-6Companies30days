@@ -1,0 +1,17 @@
+// It is Josephus Problem 
+// Here we have used reccursion to have out work done
+//Steps :-
+// We have found the node that will be deleted initially 
+// Then we have found ans for n-1 nodes
+// Made formula for mapping the actual node to the standard n-1 problem 
+
+
+class Solution {
+public:
+    int findTheWinner(int n, int k) {
+        if(n == 1) return 1;
+        int m = findTheWinner(n-1, k);
+        int del = (k - 1) % n + 1;
+        return (del + m - 1) % n + 1 ;
+    }
+};
