@@ -1,0 +1,25 @@
+// The characters who are at same indexes in both strings are the one who are at correct position - A
+// Count of all chaacters other than them are stored for both strings in cnt1 and cnt2
+// And since, to find the commo characters we just go to count to each character and adding minimum of em, becz that number has came in both but not at same index
+
+
+class Solution {
+public:
+    string getHint(string s1, string s2) {
+        int A = 0, B = 0;
+        int cnt1[10] = {0};
+        int cnt2[10] = {0};
+
+        int n = s1.size();
+        for(int i = 0; i < n; i++){
+            if(s1[i] == s2[i]) A++;
+            else{
+                cnt1[s1[i] - '0']++;
+                cnt2[s2[i] - '0']++;
+            }
+        }
+
+        for(int i = 0; i < 10; i++) B += min(cnt1[i], cnt2[i]);
+        return to_string(A) + "A" + to_string(B) + "B";
+
+    }
